@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.androidsquad.tunestream.R
+import com.androidsquad.tunestream.databinding.ActivityLaunchBinding
 import com.androidsquad.tunestream.features.dashboard.DashboardActivity
 import com.androidsquad.tunestream.features.launch.viewmodels.LauncherViewModel
 import com.androidsquad.tunestream.services.api.APIState
@@ -13,11 +14,14 @@ import com.androidsquad.tunestream.services.model.AuthToken
 
 class LauncherActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityLaunchBinding
+
     private val launcherViewModel: LauncherViewModel by viewModels { LauncherViewModel.Factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_launch)
+        binding = ActivityLaunchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         launcherViewModel.fetchAuthToken()
         observeAuthTokenState()
