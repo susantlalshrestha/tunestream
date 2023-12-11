@@ -1,5 +1,6 @@
 package com.androidsquad.tunestream.features.launch.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +11,7 @@ import com.androidsquad.tunestream.TuneStream
 import com.androidsquad.tunestream.services.api.APIState
 import com.androidsquad.tunestream.services.api.SpotifyAuthAPI
 import com.androidsquad.tunestream.services.cache.Cache
+import com.androidsquad.tunestream.services.model.AuthToken
 
 class LauncherViewModel(private val authAPI: SpotifyAuthAPI, private val cache: Cache) :
     ViewModel() {
@@ -18,12 +20,19 @@ class LauncherViewModel(private val authAPI: SpotifyAuthAPI, private val cache: 
 
     fun fetchAuthToken() {
         val token = cache.fetchAuthToken()
+        Log.i("TAG", "fetchAuthToken: " + token?.access_token)
         if (token != null) {
             authTokenState.value = APIState.DataState(token)
             return
         }
         authAPI.getAuthToken(BuildConfig.CLIENT_ID, BuildConfig.CLIENT_SECRET)
-            .subscribe { authTokenState.value = it }
+            .subscribe { state ->
+                authTokenState.value = state
+                if (state is APIState.DataState<*>) {
+                    val token = state.data as AuthToken
+                    cache.saveAuthToken(token)
+                }
+            }
     }
 
     override fun onCleared() {
