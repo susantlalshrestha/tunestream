@@ -20,7 +20,7 @@ class LauncherViewModel(private val authAPI: SpotifyAuthAPI, private val cache: 
 
     fun fetchAuthToken() {
         val token = cache.fetchAuthToken()
-        Log.i("TAG", "fetchAuthToken: " + token?.access_token)
+        Log.i("LauncherViewModel", "fetchAuthToken: " + token?.access_token)
         if (token != null) {
             authTokenState.value = APIState.DataState(token)
             return

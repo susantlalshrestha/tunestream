@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="900dp"
+        android:height="900dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="870dp"
+        android:height="870dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="840dp"
+        android:height="840dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="810dp"
+        android:height="810dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="780dp"
+        android:height="780dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="750dp"
+        android:height="750dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="720dp"
+        android:height="720dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="690dp"
+        android:height="690dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="660dp"
+        android:height="660dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="630dp"
+        android:height="630dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="600dp"
+        android:height="600dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="570dp"
+        android:height="570dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="540dp"
+        android:height="540dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="510dp"
+        android:height="510dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="480dp"
+        android:height="480dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="450dp"
+        android:height="450dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="420dp"
+        android:height="420dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="390dp"
+        android:height="390dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="360dp"
+        android:height="360dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="330dp"
+        android:height="330dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="300dp"
+        android:height="300dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="270dp"
+        android:height="270dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="240dp"
+        android:height="240dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="210dp"
+        android:height="210dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="180dp"
+        android:height="180dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="150dp"
+        android:height="150dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="120dp"
+        android:height="120dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="90dp"
+        android:height="90dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="60dp"
+        android:height="60dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+    <item
+        android:width="30dp"
+        android:height="30dp"
+        android:drawable="@drawable/bg_gradient_circle90"
+        android:gravity="center" />
+</layer-list>

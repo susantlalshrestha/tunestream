@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.androidsquad.tunestream.R
+import com.androidsquad.tunestream.features.dashboard.DashboardActivity
 import com.androidsquad.tunestream.features.launch.viewmodels.LauncherViewModel
 import com.androidsquad.tunestream.services.api.APIState
 import com.androidsquad.tunestream.services.model.AuthToken
@@ -27,9 +28,10 @@ class LauncherActivity : AppCompatActivity() {
             state?.let { apiState ->
                 when (apiState) {
                     is APIState.DataState<*> -> {
-                        val token = apiState.data as AuthToken
-                        Log.i("TAG", "observeAuthTokenState: "+ token.access_token)
+                        DashboardActivity.start(this)
+                        finish()
                     }
+
                     is APIState.ErrorState -> {}
                     APIState.FinishedState -> {}
                     APIState.ProgressingState -> {}
