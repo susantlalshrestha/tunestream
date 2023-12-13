@@ -1,11 +1,10 @@
-package com.androidsquad.tunestream.features.dashboard.fragments
+package com.androidsquad.tunestream.features.settings.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidsquad.tunestream.databinding.FragmentLibraryBinding
 import com.androidsquad.tunestream.features.base.BaseFragment
@@ -13,19 +12,18 @@ import com.androidsquad.tunestream.features.dashboard.adapters.PlaylistItemAdapt
 import com.androidsquad.tunestream.features.dashboard.viewmodels.UserViewModel
 import com.androidsquad.tunestream.features.launch.LauncherActivity
 import com.androidsquad.tunestream.services.api.APIState
-import com.androidsquad.tunestream.services.api.rp.GenresRP
 import com.androidsquad.tunestream.services.api.rp.ListRp
+import com.androidsquad.tunestream.services.api.rp.PlaylistRP
 import com.androidsquad.tunestream.services.model.Playlist
-import timber.log.Timber
 
-class LibraryFragment(private val userViewModel: UserViewModel) : BaseFragment() {
+class PlaylistByGenreFragment(private val userViewModel: UserViewModel, val genreId: String, val genreName: String) : BaseFragment() {
     private lateinit var binding: FragmentLibraryBinding
 
     private lateinit var playlistAdapter: PlaylistItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userViewModel.fetchMyPlaylists()
+        userViewModel.fetchPlaylistsByGenre(genreId)
     }
 
     override fun onCreateView(
@@ -43,17 +41,19 @@ class LibraryFragment(private val userViewModel: UserViewModel) : BaseFragment()
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = playlistAdapter
 
+        binding.tvTitle.text = genreName
+
         observeGenresState()
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun observeGenresState() {
-        userViewModel.myPlaylistAPIState.observe(viewLifecycleOwner) { state ->
+        userViewModel.playlistByGenreAPIState.observe(viewLifecycleOwner) { state ->
             state?.let { apiState ->
                 when (apiState) {
                     is APIState.DataState<*> -> {
-                        val playlists = apiState.data as ListRp<Playlist>
-                        playlistAdapter.playlists.addAll(playlists.items)
+                        val playlists = apiState.data as PlaylistRP
+                        playlistAdapter.playlists.addAll(playlists.playlists.items)
                         playlistAdapter.notifyDataSetChanged()
                     }
 

@@ -10,6 +10,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import timber.log.Timber
 import java.io.IOException
 import java.lang.reflect.Type
 
@@ -56,10 +57,9 @@ class RxErrorHandlingAdapterFactory : CallAdapter.Factory() {
                 }
 
                 try {
-                    val coreNetworkResponse =
-                        Gson().fromJson(errorBody, ErrorBody::class.java)
+                    val coreNetworkResponse = Gson().fromJson(errorBody, ErrorBody::class.java)
                     return RetrofitException.httpError(
-                        coreNetworkResponse.error_description,
+                        coreNetworkResponse.error?.message,
                         response?.raw()?.request?.url.toString(),
                         response,
                         mRetrofit

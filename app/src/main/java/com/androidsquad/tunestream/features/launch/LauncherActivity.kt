@@ -1,5 +1,6 @@
 package com.androidsquad.tunestream.features.launch
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -105,6 +106,13 @@ class LauncherActivity : BaseActivity() {
                     APIState.ProgressingState -> {}
                 }
             }
+        }
+    }
+
+
+    companion object {
+        fun start(context: Context) {
+            context.startActivity(Intent(context, LauncherActivity::class.java))
         }
     }
 }

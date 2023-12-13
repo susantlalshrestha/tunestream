@@ -21,8 +21,7 @@
             android:exported="false" />
         <activity
             android:name=".features.settings.SettingsActivity"
-            android:exported="false"
-            android:theme="@style/Theme.TuneStream.ActionBar" />
+            android:exported="false" />
         <activity
             android:name=".features.dashboard.DashboardActivity"
             android:exported="false" />

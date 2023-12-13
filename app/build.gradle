@@ -23,15 +23,15 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField("String", "CLIENT_ID", "\"49a52240e7834478a7de53557cca503e\"")
-            buildConfigField("String", "CLIENT_SECRET", "\"5d0fbd61f69848c1b50df2cb8ef7a26b\"")
+            buildConfigField("String", "CLIENT_ID", "\"eab3cd19edbe4817b0336292e613a34d\"")
+            buildConfigField("String", "CLIENT_SECRET", "\"18b91dda35734bcabc9ab1267e1bdc18\"")
             buildConfigField("String", "REDIRECT_URL", "\"https://open.spotify.com/\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "CLIENT_ID", "\"49a52240e7834478a7de53557cca503e\"")
-            buildConfigField("String", "CLIENT_SECRET", "\"5d0fbd61f69848c1b50df2cb8ef7a26b\"")
+            buildConfigField("String", "CLIENT_ID", "\"eab3cd19edbe4817b0336292e613a34d\"")
+            buildConfigField("String", "CLIENT_SECRET", "\"18b91dda35734bcabc9ab1267e1bdc18\"")
             buildConfigField("String", "REDIRECT_URL", "\"https://open.spotify.com/\"")
         }
     }
@@ -75,4 +75,5 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.1.8'
 
     implementation 'com.spotify.android:auth:1.2.3'
+    implementation 'com.squareup.picasso:picasso:2.8'
 }

@@ -1,22 +1,22 @@
 package com.androidsquad.tunestream.features.dashboard.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.androidsquad.tunestream.databinding.FragmentProfileBinding
-import com.androidsquad.tunestream.features.dashboard.viewmodels.ProfileViewModel
+import com.androidsquad.tunestream.features.base.BaseFragment
+import com.androidsquad.tunestream.features.dashboard.viewmodels.UserViewModel
+import com.androidsquad.tunestream.features.launch.LauncherActivity
 import com.androidsquad.tunestream.services.api.APIState
 import com.androidsquad.tunestream.services.model.UserProfile
 
-class ProfileFragment(private val profileViewModel: ProfileViewModel) : Fragment() {
+class ProfileFragment(private val userViewModel: UserViewModel) : BaseFragment() {
     private lateinit var binding: FragmentProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        profileViewModel.fetchUserProfile()
+        userViewModel.fetchUserProfile()
     }
 
     override fun onCreateView(
@@ -34,16 +34,26 @@ class ProfileFragment(private val profileViewModel: ProfileViewModel) : Fragment
     }
 
     private fun observeUserProfileState() {
-        profileViewModel.userProfileAPIState.observe(viewLifecycleOwner) { state ->
+        userViewModel.userProfileAPIState.observe(viewLifecycleOwner) { state ->
             state?.let { apiState ->
                 when (apiState) {
                     is APIState.DataState<*> -> {
                         val profile = apiState.data as UserProfile
-                        Log.i("TAG", "observeUserProfileState: " + profile.display_name)
+                        binding.tvProfileInitial.text = profile.display_name[0].toString()
+                        binding.tvProfileName.text = profile.display_name
+                        binding.tvProfileEmail.text = profile.email
                     }
 
                     is APIState.ErrorState -> {
-                        Log.i("TAG", "observeUserProfileState: " + apiState.error)}
+                        if (apiState.error == "logout") {
+                            activity?.let {
+                                LauncherActivity.start(it)
+                                it.finish()
+                            }
+                        }
+                        showMessage(apiState.error)
+                    }
+
                     APIState.FinishedState -> {}
                     APIState.ProgressingState -> {}
                 }

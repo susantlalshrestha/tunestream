@@ -24,10 +24,10 @@ class LauncherViewModel(private val authAPI: SpotifyAuthAPI, private val cache: 
     fun fetchAuthToken(authCode: AuthCode? = null) {
         val token = cache.fetchAuthToken()
         Timber.i("fetchAuthToken: %s", token?.access_token)
-        if (token != null) {
-            authTokenState.value = APIState.DataState(token)
-            return
-        }
+//        if (token != null) {
+//            authTokenState.value = APIState.DataState(token)
+//            return
+//        }
         if (authCode == null) return
         compositeDisposable.add(
             authAPI.getAuthToken(

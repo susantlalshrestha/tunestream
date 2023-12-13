@@ -12,7 +12,7 @@ class RetrofitException(
     message: String?,
     exception: Throwable?,
     private val url: String?,
-    private val response: Response<*>?,
+    val response: Response<*>?,
     private val kind: Kind,
     private val retrofit: Retrofit?
 ) : RuntimeException(message, exception) {
