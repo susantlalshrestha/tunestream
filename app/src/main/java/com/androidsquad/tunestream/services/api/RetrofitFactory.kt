@@ -1,5 +1,6 @@
 package com.androidsquad.tunestream.services.api
 
+import com.androidsquad.tunestream.core.networkkits.RxErrorHandlingAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -26,5 +27,6 @@ object RetrofitFactory {
         return Retrofit.Builder()
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxErrorHandlingAdapterFactory.create())
     }
 }

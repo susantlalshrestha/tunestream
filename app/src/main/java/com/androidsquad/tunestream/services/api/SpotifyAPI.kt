@@ -1,9 +1,9 @@
 package com.androidsquad.tunestream.services.api
 
-import com.androidsquad.tunestream.services.api.apiservices.AuthAPIService
+import com.androidsquad.tunestream.services.api.apiservices.UserAPIService
 
 class SpotifyAPI : BaseAPI(BASE_URL) {
-    private val apiService: AuthAPIService = retrofit.create(AuthAPIService::class.java)
+    private val userApiService: UserAPIService = retrofit.create(UserAPIService::class.java)
 
     companion object {
         const val BASE_URL = "https://api.spotify.com/v1/"

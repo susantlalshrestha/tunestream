@@ -4,4 +4,12 @@
     <string name="search">Search</string>
     <string name="library">Library</string>
     <string name="profile">Profile</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account_register">Don\'t have an account? Register</string>
+    <string name="user_email">User Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="let_s_begin">Let\'s Begin</string>
 </resources>

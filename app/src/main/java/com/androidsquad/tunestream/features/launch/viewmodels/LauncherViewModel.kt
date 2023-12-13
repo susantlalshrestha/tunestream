@@ -1,6 +1,5 @@
 package com.androidsquad.tunestream.features.launch.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,32 +10,44 @@ import com.androidsquad.tunestream.TuneStream
 import com.androidsquad.tunestream.services.api.APIState
 import com.androidsquad.tunestream.services.api.SpotifyAuthAPI
 import com.androidsquad.tunestream.services.cache.Cache
+import com.androidsquad.tunestream.services.model.AuthCode
 import com.androidsquad.tunestream.services.model.AuthToken
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import timber.log.Timber
 
 class LauncherViewModel(private val authAPI: SpotifyAuthAPI, private val cache: Cache) :
     ViewModel() {
+    private val compositeDisposable = CompositeDisposable()
 
     val authTokenState = MutableLiveData<APIState>()
 
-    fun fetchAuthToken() {
+    fun fetchAuthToken(authCode: AuthCode? = null) {
         val token = cache.fetchAuthToken()
-        Log.i("LauncherViewModel", "fetchAuthToken: " + token?.access_token)
+        Timber.i("fetchAuthToken: %s", token?.access_token)
         if (token != null) {
             authTokenState.value = APIState.DataState(token)
             return
         }
-        authAPI.getAuthToken(BuildConfig.CLIENT_ID, BuildConfig.CLIENT_SECRET)
-            .subscribe { state ->
-                authTokenState.value = state
-                if (state is APIState.DataState<*>) {
-                    val token = state.data as AuthToken
-                    cache.saveAuthToken(token)
-                }
-            }
+        if (authCode == null) return
+        compositeDisposable.add(
+            authAPI.getAuthToken(
+                BuildConfig.CLIENT_ID,
+                BuildConfig.CLIENT_SECRET,
+                authCode.code,
+                BuildConfig.REDIRECT_URL
+            )
+                .subscribe({ state ->
+                    authTokenState.value = state
+                    if (state is APIState.DataState<*>) cache.saveAuthToken(state.data as AuthToken)
+                }, { exception ->
+                    authTokenState.value = APIState.ErrorState(exception.message ?: "")
+                })
+        )
     }
 
     override fun onCleared() {
         super.onCleared()
+        compositeDisposable.clear()
         authTokenState.value = APIState.FinishedState
     }
 

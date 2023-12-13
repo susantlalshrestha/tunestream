@@ -1,10 +1,11 @@
 package com.androidsquad.tunestream
 
 import android.app.Application
-import android.content.SharedPreferences
 import com.androidsquad.tunestream.services.api.SpotifyAPI
 import com.androidsquad.tunestream.services.api.SpotifyAuthAPI
 import com.androidsquad.tunestream.services.cache.Cache
+import timber.log.Timber
+
 
 class TuneStream : Application() {
     lateinit var spotifyAPI: SpotifyAPI
@@ -12,6 +13,7 @@ class TuneStream : Application() {
     lateinit var cache: Cache
     override fun onCreate() {
         super.onCreate()
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
         initializeAPIServices()
         initializeCache()
     }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".TuneStream"
         android:allowBackup="true"
@@ -16,16 +17,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".features.settings.SettingsActivity"
-            android:theme="@style/Theme.TuneStream.ActionBar"
+            android:name=".features.auth.AuthActivity"
             android:exported="false" />
+        <activity
+            android:name=".features.settings.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TuneStream.ActionBar" />
         <activity
             android:name=".features.dashboard.DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".features.launch.LauncherActivity"
-            android:theme="@style/Theme.TuneStream.Splash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.TuneStream.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
